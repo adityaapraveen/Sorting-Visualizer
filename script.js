@@ -37,19 +37,42 @@ function arrayToBars(arr){
 
 }
 
+
+
 // To reset the array.
 function resetArray() {
     const newArrSize = sizeSlider.value;
     const newArr = generatingRandomArray(newArrSize);
     arrayToBars(newArr);
     sliderValue.textContent = `${newArrSize} Bars.`;
+    //to hide the message when new array button is clicked
+    const sortingMessage = document.getElementById('sortingMessage');
+    sortingMessage.style.display = 'none'; // Hide the message
+    sortingMessage.classList.remove('wavy'); // Remove the animation
 }
 
 
 function updateSliderValue() {
+
     resetArray();
 }
 resetArray();
+
+
+// Function to display the "SORTED" message with animation
+// function displaySortedMessage() {
+//     const sortingMessage = document.getElementById('sortingMessage');
+    // sortingMessage.textContent = 'SORTED!';
+
+    // Remove and re-add the element to reset the animation
+    // const parent = sortingMessage.parentElement;
+    // const nextSibling = sortingMessage.nextSibling;
+    // parent.removeChild(sortingMessage);
+    // setTimeout(() => {
+    //     parent.insertBefore(sortingMessage, nextSibling);
+    //     sortingMessage.style.animation = 'bounce 1s infinite';
+    // }, 0);
+// }
 
 // Bubble Sort algorithm
 async function bubbleSort() {
@@ -78,4 +101,7 @@ async function bubbleSort() {
             array[j + 1].style.backgroundColor = "#3498db";
         }
     }
+    const sortingMessage = document.getElementById('sortingMessage');
+    sortingMessage.style.display = 'block'; // Show the message
+    sortingMessage.classList.add('wavy'); // Apply the animation
 }

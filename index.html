@@ -32,13 +32,25 @@
     </nav> -->
 
 
-
+<!-- actual -->
     <div class="div-slider">
-        <span for="slider" class="form-label" id="sliderValue">Example range</span>
+        <span for="slider" class="form-label" id="sliderValue"></span>
         <input type="range" class="form-range" min="2" max="30" id="slider" oninput="updateSliderValue()" style>
     </div>
 
+
+
     <div id="array-container"></div>
+
+    <div class="wavy" id="sortingMessage">
+        <span style="--i:1">S</span>
+        <span style="--i:2">O</span>
+        <span style="--i:3">R</span>
+        <span style="--i:4">T</span>
+        <span style="--i:5">E</span>
+        <span style="--i:6">D</span>
+        <span style="--i:7">!</span>
+    </div>
 
     <div class="button-container">
         <button type="button" class="btn btn-outline-dark" onclick="resetArray()">New Array</button>
@@ -46,8 +58,26 @@
     </div>
 
 
-
     <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('.range input').on('mousemove', function () {
+                var getValRange = $(this).val();
+                $('.range span').text(getValRange + '%');
+            });
+
+
+        });
+
+
+    </script>
+
 </body>
 
 </html>

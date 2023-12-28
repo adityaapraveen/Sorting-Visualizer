@@ -21,6 +21,10 @@
     /* Adjust the height as needed */
     max-width: 75%;
     margin: auto;
+    width: 260px;
+    height: 260px;
+    margin: 0 auto;
+        /* cursor: grab; */
 }
 
 body {
@@ -32,19 +36,23 @@ body {
     background-color: #ffffff;
     flex-direction: column;
     margin-top: 30px;
+    /* background: linear-gradient(to right, #faa1a1, #82a6f5); */
+    background: radial-gradient(#faa1a1, #82a6f5);
 }
 
 #array-container {
     display: flex;
     margin-bottom: 20px;
     max-width: 75%;
+    
 }
 
 .array-bar {
     width: 20px;
     margin-right: 5px;
-    background-color: #34db58;
+    background-color: #8a8a8a;
     max-height: 60vh;
+    
 }
 
 #sizeSliderContainer {
@@ -56,4 +64,117 @@ body {
 #sizeSlider {
     width: 300px;
     margin-right: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+/* Add this to your CSS */
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+.wavy {
+    position: relative;
+    font-size: 60px;
+}
+
+.wavy span {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    animation: wavy 1.5s infinite, bounce 2s infinite;
+    animation-delay: calc(.1s * var(--i));
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(255, 255, 255, 0.4));
+}
+
+@keyframes wavy {
+
+    0%,
+    40%,
+    100% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(-20px);
+    }
+}
+#sortingMessage {
+    display: none;
+    /* Initially hide the message */
+    position: relative;
+    /* Ensure correct positioning for animation */
+}
+/* Add this style to animate the range slider */
+.form-range {
+    background-color: #fcadff;
+    border-radius: 13px;
+    cursor:grab;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #fcadff;
+    cursor: grab;
+}
+/* Customize the slider button */
+.form-range::-webkit-slider-thumb {
+    background-color: #fbfbfb;
+    border: 2px solid #cdb4db;
+    /* Add a border for a square shape */
+    width: 20px;
+    /* Set the width to make it square */
+    height: 20px;
+    /* Set the height to make it square */
+    /* cursor: grab; */
+}
+
+.form-range::-moz-range-thumb {
+    background-color: red;
+    /* border: 2px solid rgb(248, 11, 11); */
+    width: 30px;
+    height: 20px;
+    cursor: grab;
+}
+
+.form-range::-ms-thumb {
+    background-color: red;
+    /* border: 2px solid rgb(255, 0, 0); */
+    width: 30px;
+    height: 20px;
+    cursor: grab;
+
+}
+
+/* Add animation to the slider button */
+.form-range::-webkit-slider-thumb:hover {
+    transform: scale(1.6);
+    /* Add a hover effect */
+    transition: transform 0.3s ease-in-out;
+    cursor: grab;
+}
+
+#sliderValue{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+
+}
+#sliderValue:hover{
+    transform: scale(1.4);
+    /* transition: transform 1s ease-in-out; */
+    animation: wavy 1.5s infinite, bounce 2s infinite;
+    animation-delay: calc(.1s * var(--i));
 }
