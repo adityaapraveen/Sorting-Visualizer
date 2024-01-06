@@ -1,29 +1,26 @@
-/* Add this style to center the buttons */
 .button-container {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    /* Adjust the margin as needed */    
 }
 
 .btn {
     margin: 10px;
     /* margin-bottom: 30px; */
+    /* max-width: 130px; */
 }
 
-/* Add this style to center the slider */
 .div-slider {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 30vh;
-    /* Adjust the height as needed */
     max-width: 75%;
     margin: auto;
     width: 260px;
     height: 260px;
-    margin: 0 auto;
+        /* margin-bottom: 90px; */
         /* cursor: grab; */
 }
 
@@ -44,15 +41,17 @@ body {
     display: flex;
     margin-bottom: 20px;
     max-width: 75%;
+    align-items: flex-end;
+
     
 }
 
 .array-bar {
     width: 20px;
     margin-right: 5px;
-    background-color: #8a8a8a;
+    background-color: #00ac14;
     max-height: 60vh;
-    
+    transform: scaleY(-1);
 }
 
 #sizeSliderContainer {
@@ -67,7 +66,6 @@ body {
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
-/* Add this to your CSS */
 @keyframes bounce {
 
     0%,
@@ -130,16 +128,11 @@ input[type="range"]::-webkit-slider-runnable-track {
     background-color: #fcadff;
     cursor: grab;
 }
-/* Customize the slider button */
 .form-range::-webkit-slider-thumb {
     background-color: #fbfbfb;
     border: 2px solid #cdb4db;
-    /* Add a border for a square shape */
     width: 20px;
-    /* Set the width to make it square */
     height: 20px;
-    /* Set the height to make it square */
-    /* cursor: grab; */
 }
 
 .form-range::-moz-range-thumb {
@@ -159,10 +152,8 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 }
 
-/* Add animation to the slider button */
 .form-range::-webkit-slider-thumb:hover {
     transform: scale(1.6);
-    /* Add a hover effect */
     transition: transform 0.3s ease-in-out;
     cursor: grab;
 }
@@ -178,3 +169,4 @@ input[type="range"]::-webkit-slider-runnable-track {
     animation: wavy 1.5s infinite, bounce 2s infinite;
     animation-delay: calc(.1s * var(--i));
 }
+

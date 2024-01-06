@@ -1,5 +1,10 @@
 // functions to work on:
-// resetting array - toDisplaySliderNumber - generateRandomArray - toDrawArrayBars - bubbleSort
+// resetting array - toDisplaySliderNumber - generateRandomArray - toDrawArrayBars - bubbleSort - selectionSort - insertionSort
+
+
+//Features to add for better understanding:
+//-> Arrows when for which is being swapped or which one is the current index when sorting
+//-> Make the swapping animation better.
 
 const sizeSlider = document.getElementById('slider');
 const sliderValue = document.getElementById('sliderValue');
@@ -21,9 +26,6 @@ function generatingRandomArray(size) {
     return arr;
 }
 
-
-
-// converting the array of numbers into bars.
 function arrayToBars(arr){
     const arrayContainer = document.getElementById('array-container');
     arrayContainer.innerHTML = '';
@@ -32,6 +34,7 @@ function arrayToBars(arr){
         const bar = document.createElement("div");
         bar.className = "array-bar";
         bar.style.height = `${value * 4}px`; // Scale the height for better visualization
+        bar.style.transform = 'rotateY(180deg)'; // Add this line
         arrayContainer.appendChild(bar);
 });
 
@@ -58,8 +61,12 @@ function updateSliderValue() {
 }
 resetArray();
 
+function displaySortedMessage(){
+    const sortingMessage = document.getElementById('sortingMessage');
+    sortingMessage.style.display = 'block'; // Show the message
+    sortingMessage.classList.add('wavy'); // Apply the animation
+}
 
-// Function to display the "SORTED" message with animation
 // function displaySortedMessage() {
 //     const sortingMessage = document.getElementById('sortingMessage');
     // sortingMessage.textContent = 'SORTED!';
@@ -85,7 +92,7 @@ async function bubbleSort() {
             array[j].style.backgroundColor = "#e74c3c";
             array[j + 1].style.backgroundColor = "#e74c3c";
 
-            await new Promise(resolve => setTimeout(resolve, 250)); // Delay for visualization
+            await new Promise(resolve => setTimeout(resolve, 450)); // Delay for visualization
 
             const value1 = parseInt(array[j].style.height);
             const value2 = parseInt(array[j + 1].style.height);
@@ -94,6 +101,8 @@ async function bubbleSort() {
                 // Swap the bars
                 array[j].style.height = `${value2}px`;
                 array[j + 1].style.height = `${value1}px`;
+                // array[i].style.backgroundColor = "#fff";
+                // array[i + 1].style.backgroundColor = "#fff";
             }
 
             // Reset the color after comparison
@@ -101,7 +110,129 @@ async function bubbleSort() {
             array[j + 1].style.backgroundColor = "#3498db";
         }
     }
-    const sortingMessage = document.getElementById('sortingMessage');
-    sortingMessage.style.display = 'block'; // Show the message
-    sortingMessage.classList.add('wavy'); // Apply the animation
+    for (let i = 0; i < n; i++) {
+        array[i].style.backgroundColor = "#2ecc71"; // Green
+        await new Promise(resolve => setTimeout(resolve, 75)); // Delay for visualization
+    }
+    displaySortedMessage()
+    
+}
+
+// function textDisplay(){
+//         var text = document.getElementsByClassName("sorting-message");
+//         text.style.display = "block";
+// }
+async function selectionSort() {
+    // textDisplay()
+    const array = Array.from(document.getElementsByClassName("array-bar"));
+    const n = array.length;
+
+
+    for (let i = 0; i < n - 1; i++) {
+        let minIndex = i;
+
+        // Keep the current minimum index color as black
+        array[minIndex].style.backgroundColor = "#000";
+
+        for (let j = i + 1; j < n; j++) {
+            // Iterating one as YELLOW
+            array[j].style.backgroundColor = "#ffbc42";
+
+            await new Promise(resolve => setTimeout(resolve, 200)); // Delay for visualization
+
+            const value1 = parseInt(array[j].style.height);
+            const minValue = parseInt(array[minIndex].style.height);
+
+            if (value1 < minValue) {
+                // Change the current minimum index color back to black
+                // array[minIndex].style.backgroundColor = "#000";
+                minIndex = j;
+            }
+
+            // Reset the color after comparison
+            array[j].style.backgroundColor = "#00ac14";
+        }
+
+        // Swap the bars
+        const temp = array[i].style.height;
+        array[i].style.height = array[minIndex].style.height;
+        array[minIndex].style.height = temp;
+
+        // Highlight the bars being swapped
+        array[i].style.backgroundColor = "#ffffff";
+        array[minIndex].style.backgroundColor = "#ffffff";
+
+        await new Promise(resolve => setTimeout(resolve, 600)); // Delay for visualization
+
+        // Make it green after swapping
+        array[i].style.backgroundColor = "#cdb4db";
+        array[minIndex].style.backgroundColor = "#cdb4db";
+
+        await new Promise(resolve => setTimeout(resolve, 600)); // Delay for visualization
+
+        // Reset the color after swapping
+        array[i].style.backgroundColor = "#386641";     //3498db
+        array[minIndex].style.backgroundColor = "#386641";
+    }
+
+    displaySortedMessage()
+
+    // Ensure the last minimum index is displayed in black
+    array[n - 1].style.backgroundColor = "#000";
+    for (let i = 0; i < n; i++) {
+        array[i].style.backgroundColor = "#2ecc71"; // Green
+        await new Promise(resolve => setTimeout(resolve, 75)); // Delay for visualization
+    }
+}
+async function insertionSort() {
+    const array = Array.from(document.getElementsByClassName("array-bar"));
+    const n = array.length;
+
+    for (let i = 1; i < n; i++) {
+        const key = parseInt(array[i].style.height);
+        let j = i - 1;
+
+        // Highlight the key being considered
+        array[i].style.backgroundColor = "#fff"; // Black
+
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Delay for visualization
+
+        while (j >= 0 && parseInt(array[j].style.height) > key) {
+            // Move the bars to the right
+            array[j + 1].style.height = array[j].style.height;
+
+            // Highlight the bars being shifted
+            array[j + 1].style.backgroundColor = "#2ecc71"; // Blue
+            array[j].style.backgroundColor = "#2ecc71"; // Green
+
+            await new Promise(resolve => setTimeout(resolve, 350)); // Delay for visualization
+
+            // Reset the color after shifting
+            array[j + 1].style.backgroundColor = "#000"; // Black
+            array[j].style.backgroundColor = "#000"; // Black
+
+            j--;
+        }
+
+        // Place the key in its correct position
+        array[j + 1].style.height = `${key}px`;
+
+        // Highlight the bar in its sorted position
+        array[j + 1].style.backgroundColor = "#2ecc71"; // Green
+
+        await new Promise(resolve => setTimeout(resolve, 350)); // Delay for visualization
+
+        // Reset the color after placing the key
+        array[i].style.backgroundColor = "#000"; // Black
+        array[j + 1].style.backgroundColor = "#000"; // Black
+    }
+
+
+
+    // Ensure all bars are in their sorted positions
+    for (let i = 0; i < n; i++) {
+        array[i].style.backgroundColor = "#2ecc71"; // Green
+        await new Promise(resolve => setTimeout(resolve, 75)); // Delay for visualization
+    }
+    displaySortedMessage()
 }
